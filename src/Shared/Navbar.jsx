@@ -22,7 +22,7 @@ const Navbar = () => {
     </div>
     return (
         <>
-            <div className="navbar bg-[#AE8FB4] p-5">
+            <div className="navbar bg-[#AE8FB4] font-mono p-5">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -32,7 +32,7 @@ const Navbar = () => {
                            {navLinks}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost font-mono text-white text-xl">TO<span className='text-3xl  text-orange-900'>DO</span></a>
+                    <a className="btn btn-ghost font-mono text-white text-3xl">TO<span className='text-5xl  text-orange-900'>DO</span></a>
                 </div>
                 <div className="navbar-end hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
