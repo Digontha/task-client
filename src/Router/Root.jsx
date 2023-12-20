@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 const Root = () => {
     return (
-        <div>
+        <div className='bg-[#DDD8DE] min-h-screen'>
            <Outlet></Outlet>
         </div>
     );
