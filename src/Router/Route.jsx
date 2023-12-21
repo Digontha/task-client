@@ -5,6 +5,7 @@ import About from "../Pages/About";
 import Contact from "../Pages/Contact";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
+import Dashboard from "../Pages/Dashboard";
 
 const router = createBrowserRouter([
     {
@@ -34,5 +35,9 @@ const router = createBrowserRouter([
         }
       ]
     },
+    {
+      path:"/dashboard",
+      element:<Dashboard></Dashboard>
+    }
   ]);
   export default router;
