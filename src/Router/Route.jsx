@@ -6,6 +6,10 @@ import Contact from "../Pages/Contact";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import Dashboard from "../Pages/Dashboard";
+import CreateTask from "../Pages/Dashboard/CreateTask";
+import TodoList from "../Pages/Dashboard/TodoList";
+import OnGoing from "../Pages/Dashboard/OnGoing";
+import Completed from "../Pages/Dashboard/Completed";
 
 const router = createBrowserRouter([
     {
@@ -37,7 +41,25 @@ const router = createBrowserRouter([
     },
     {
       path:"/dashboard",
-      element:<Dashboard></Dashboard>
+      element:<Dashboard></Dashboard>,
+      children:[
+        {
+          path:"/dashboard",
+          element:<CreateTask></CreateTask>
+        },
+        {
+          path:"/dashboard/todo",
+          element:<TodoList></TodoList>
+        },
+        {
+          path:"/dashboard/ongoing",
+          element:<OnGoing></OnGoing>
+        },
+        {
+          path:"/dashboard/completed",
+          element:<Completed></Completed>
+        }
+      ]
     }
   ]);
   export default router;
