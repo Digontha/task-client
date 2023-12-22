@@ -10,6 +10,7 @@ import CreateTask from "../Pages/Dashboard/CreateTask";
 import TodoList from "../Pages/Dashboard/TodoList";
 import OnGoing from "../Pages/Dashboard/OnGoing";
 import Completed from "../Pages/Dashboard/Completed";
+import Update from "../Components/Update/Update";
 
 const router = createBrowserRouter([
     {
@@ -58,6 +59,11 @@ const router = createBrowserRouter([
         {
           path:"/dashboard/completed",
           element:<Completed></Completed>
+        },
+        {
+          path:"/dashboard/update/:id",
+          element:<Update></Update>,
+          loader:({params})=>fetch(`http://localhost:5000/completed/${params.id}`)
         }
       ]
     }

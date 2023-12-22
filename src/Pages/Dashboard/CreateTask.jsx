@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import useAxiosPublic from '../../Axios/useAxiosPublic';
 import swal from 'sweetalert';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const CreateTask = () => {
 
+    const {user}=useContext(AuthContext)
+    
     const axiosPublic = useAxiosPublic()
-    const [priority, setPriority] = useState('');
+    const [priority, setPriority] = useState('High');
     const handleAddTask = (e) => {
         e.preventDefault();
         const form = e.target
@@ -19,7 +22,8 @@ const CreateTask = () => {
             tasks,
             description,
             deadline,
-            priority
+            priority,
+            email:user.email
         }
 
         axiosPublic.post("/todo", info)

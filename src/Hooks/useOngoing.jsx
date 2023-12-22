@@ -1,20 +1,20 @@
 import React, { useContext } from 'react';
 import useAxiosPublic from '../Axios/useAxiosPublic';
-import { useQuery } from '@tanstack/react-query';
 import { AuthContext } from '../AuthProvider/AuthProvider';
+import { useQuery } from '@tanstack/react-query';
 
-const useTask = () => {
+const useOngoing = () => {
     const axiosPublic = useAxiosPublic();
     const { user } = useContext(AuthContext)
-    const { data: task = [],isPending,refetch} = useQuery({
-        queryKey: ["task"],
+    const { data: ongoing = [],isPending,refetch} = useQuery({
+        queryKey: ["ongoing"],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/todo?email=${user?.email}`)
+            const res = await axiosPublic.get(`/ongoing?email=${user?.email}`)
             return res.data
         }
     })
 
-    return [task,isPending,refetch]
+    return [ongoing,isPending,refetch]
 };
 
-export default useTask;
+export default useOngoing;
