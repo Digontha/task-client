@@ -3,6 +3,9 @@ import Loader from '../../Components/Loader/Loader';
 import useAxiosPublic from '../../Axios/useAxiosPublic';
 import swal from 'sweetalert';
 import useOngoing from '../../Hooks/useOngoing';
+import { Link } from 'react-router-dom';
+import { MdDelete } from "react-icons/md";
+import { RiEdit2Fill } from "react-icons/ri";
 
 const OnGoing = () => {
     const [ongoing, isPending, refetch] = useOngoing()
@@ -42,9 +45,21 @@ const OnGoing = () => {
 
     };
 
+    const handleDelete = (id) => {
+        axiosPublic.delete(`/ongoing/${id}`)
+            .then(res => {
+                console.log(res.data);
+                swal("Add to completed", "You Task Add to completed Successfully!", "success");
+                refetch()
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
     return (
         <>
-            {isPending ? <Loader></Loader> : <div className="overflow-y-auto bg-gray-500 text-white p-20">
+            {isPending ? <Loader></Loader> : <div className="overflow-y-auto bg-gray-500 text-white w-full lg:p-20">
                 <table className="table">
                     <thead>
                         <tr className='text-xl font-bold text-white'>
@@ -68,6 +83,8 @@ const OnGoing = () => {
                                 <td>{item?.priority}</td>
                                 <div className='lg:flex gap-3'>
                                     <td onClick={() => handleAddToCompleted(item)} className='btn btn-sm btn-neutral'>Save to Completed</td>
+                                    <td onClick={()=>handleDelete(item?._id)} className='btn btn-sm btn-neutral '><MdDelete></MdDelete> </td>
+                                    <Link to={`/dashboard/ongoingupdate/${item._id}`}><td className='btn btn-sm btn-neutral '><RiEdit2Fill></RiEdit2Fill> </td></Link>
                                 </div>
                             </tr>
                         ))}

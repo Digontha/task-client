@@ -11,6 +11,9 @@ import TodoList from "../Pages/Dashboard/TodoList";
 import OnGoing from "../Pages/Dashboard/OnGoing";
 import Completed from "../Pages/Dashboard/Completed";
 import Update from "../Components/Update/Update";
+import TodoUpdate from "../Components/Update/todoUpdate";
+import OngoingUpdate from "../Components/Update/ongoingUpdate";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -42,28 +45,39 @@ const router = createBrowserRouter([
     },
     {
       path:"/dashboard",
-      element:<Dashboard></Dashboard>,
+      element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
       children:[
         {
           path:"/dashboard",
-          element:<CreateTask></CreateTask>
+          element:<PrivateRoute><CreateTask></CreateTask></PrivateRoute>
         },
         {
           path:"/dashboard/todo",
-          element:<TodoList></TodoList>
+          element:<PrivateRoute><TodoList></TodoList></PrivateRoute>
         },
         {
           path:"/dashboard/ongoing",
-          element:<OnGoing></OnGoing>
+          element:<PrivateRoute><OnGoing></OnGoing></PrivateRoute>
         },
         {
           path:"/dashboard/completed",
-          element:<Completed></Completed>
+          element:<PrivateRoute><Completed></Completed></PrivateRoute>
         },
         {
           path:"/dashboard/update/:id",
           element:<Update></Update>,
           loader:({params})=>fetch(`http://localhost:5000/completed/${params.id}`)
+        }
+        ,
+        {
+          path:"/dashboard/todoupdate/:id",
+          element:<TodoUpdate></TodoUpdate>,
+          loader:({params})=>fetch(`http://localhost:5000/todo/${params.id}`)
+        },
+        {
+          path:"/dashboard/ongoingupdate/:id",
+          element:<OngoingUpdate></OngoingUpdate>,
+          loader:({params})=>fetch(`http://localhost:5000/ongoing/${params.id}`)
         }
       ]
     }

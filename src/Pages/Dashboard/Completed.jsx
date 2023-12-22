@@ -22,7 +22,7 @@ const Completed = () => {
     }
     return (
         <>
-            {isPending ? <Loader></Loader> : <div className="overflow-y-auto bg-gray-500 text-white p-20">
+            {isPending ? <Loader></Loader> : <div className="overflow-y-auto bg-gray-500 text-white w-full lg:p-20">
                 <table className="table">
                     <thead>
                         <tr className='text-xl font-bold text-white'>
